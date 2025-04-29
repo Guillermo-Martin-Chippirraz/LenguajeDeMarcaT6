@@ -4,11 +4,11 @@ console.log(frutas.length);
 
 /*a*/
 
-frutas = frutas.sort();
+frutas.sort();
 console.log(frutas[0]);
 
 /*b*/
 
 frutas.push(prompt("Añade una pinche fruta"));
-frutas = frutas.sort();
+frutas.sort();
 console.log(frutas[0]);
