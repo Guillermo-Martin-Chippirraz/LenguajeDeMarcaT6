@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad6.4</title>
+</head>
+
+<body>
+    <script src="Actividad6.4.2.js">
+
+    </script>
+    <script src="Actividad6.4.3.js">
+
+    </script>
+    <script src="Actividad6.4.4.js">
+
+    </script>
+    <script src="Actividad6.4.5.js">
+
+    </script>
+    <script src="Actividad6.4.6.js">
+
+    </script>
+    <script>
+        let num1 = prompt("Escribe el primer número");
+        let num2 = prompt("Escribe el segundo número");
+        console.log(suma(num1, num2));
+        let cantidad = prompt("¿Cuántas palabras quieres usar?");
+        let palabras = new Array();
+        for (let i = 0; i < cantidad; i++) {
+            palabras[i] = prompt("Introduce una palabra");
+        }
+        console.log(ordenaArrays(palabras));
+        let i = prompt("¿Cuánto le sumo a 10?")
+        while (i > 0) {
+            i--;
+            aumentaVariable();
+        }
+        let num = prompt("Introduce un número (entero)");
+        console.log(invierteNum(num));
+        let array1 = new Array();
+        let array2 = new Array();
+        let tamaño1 = prompt("Introduce el tamaño del primer array");
+        let tamaño2 = prompt("Introduce el tamaño del segundo array");
+        for (let i = 0; i < tamaño1; i++) {
+            array1[i] = prompt("Introduce el " + parseInt(i + 1) + " valor del primer array");
+        }
+        for (let i = 0; i < tamaño2; i++) {
+            array2[i] = prompt("Introduce el " + parseInt(i + 1) + " valor del segundo array");
+        }
+        console.log(array1, array2);
+    </script>
+</body>
+
+</html>
