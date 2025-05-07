@@ -1,0 +1,14 @@
+let editable = document.getElementById("editable");
+let imgEditable = document.createElement('img');
+imgEditable.src = "https://celebrateurbanbirds.org/wp-content/uploads/2016/08/rock-pigeon-1024x1024.png";
+imgEditable.alt = "Una paloma to gilipoia";
+imgEditable.width = "300";
+editable.appendChild(imgEditable);
+let pEditable = document.createElement('p');
+let textoP = document.createTextNode('Una paloma to gilipoia.');
+pEditable.appendChild(textoP);
+pEditable.style.textAlign = "center";
+pEditable.style.fontWeight = "bold";
+pEditable.style.fontSize = "50px";
+editable.appendChild(pEditable);
+editable.style.backgroundColor = "red";

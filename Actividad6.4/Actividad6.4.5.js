@@ -1,7 +1,7 @@
 function invierteNum(num) {
-    let Snum = toString(num);
+    let Snum = String(parseInt(num));
     let Anum = Snum.split("");
-    Anum.reverse;
+    Anum.reverse();
     Snum = Anum.join("");
     return parseInt(Snum);
 }
