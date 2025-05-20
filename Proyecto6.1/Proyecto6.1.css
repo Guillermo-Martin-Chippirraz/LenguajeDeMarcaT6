@@ -18,6 +18,10 @@ h2 {
     border: none;
 }
 
+.bebe:hover {
+    cursor: url("/home/tarde/Documentos/Tareas y prácticas/Lenguajes de marca/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/bota1.svg"), auto;
+}
+
 .bebe:active {
     transform: scale(0.95);
 }
@@ -36,8 +40,9 @@ h2 {
 
 .mejoras {
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+    grid-template-columns: 90% 10%;
     width: 50%;
     margin-left: 25%;
     gap: 20px;
@@ -62,4 +67,45 @@ h2 {
 .mejoras button:active {
     transform: translateY(5px);
     opacity: 1;
+}
+
+.bate {
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+
+.bateadorContract {
+    grid-row: 1/2;
+    grid-column: 2/-1;
+    background-color: white;
+    border-radius: 50%;
+    justify-content: center;
+    display: none;
+}
+
+.botas {
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+.clavos {
+    grid-row: 2/3;
+    grid-column: 2/-1;
+    background-color: white;
+    border-radius: 50%;
+    justify-content: center;
+    display: none;
+}
+
+.balazo {
+    grid-row: 3/-1;
+    grid-column: 1/2;
+}
+
+.revolver {
+    grid-row: 3/-1;
+    grid-column: 2/-1;
+    background-color: white;
+    border-radius: 50%;
+    display: none;
 }
