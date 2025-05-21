@@ -16,11 +16,9 @@ h2 {
 .bebe {
     background: none;
     border: none;
+    cursor: url("Recursos/bota1.png"), pointer;
 }
 
-.bebe:hover {
-    cursor: url("/home/tarde/Documentos/Tareas y prácticas/Lenguajes de marca/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/bota1.svg"), auto;
-}
 
 .bebe:active {
     transform: scale(0.95);

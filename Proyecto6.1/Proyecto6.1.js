@@ -22,7 +22,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
     bebe.addEventListener("click", () => {
         puntos += pointsPerClick;
-        actualizaPantalla();
     })
 
     bateadorMejora.addEventListener("click", () => {
@@ -32,8 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
             precioBateador = Math.floor(precioBateador * 1.3);
 
             setInterval(() => {
-                puntos += pointsPerClick * 30;
-                actualizaPantalla();
+                puntos += 30 * bateadoresContratados;
             }, 1000);
         }
     });
@@ -41,10 +39,9 @@ window.addEventListener("DOMContentLoaded", function () {
     botasMejora.addEventListener("click", () => {
         if (puntos >= precioClavo) {
             puntos -= precioClavo;
-            pointsPerClick++;
             ClavosComprados++;
+            pointsPerClick = 50 * ClavosComprados;
             precioClavo = Math.floor(precioClavo * 1.2);
-            actualizarPantalla();
         }
     });
 
@@ -53,7 +50,6 @@ window.addEventListener("DOMContentLoaded", function () {
             puntos += puntosBala - precioBalazo;
             balaComprada = true;
             precioBalazo = Math.floor(precioBalazo * 2);
-            actualizaPantalla();
         }
     });
 
@@ -63,25 +59,45 @@ window.addEventListener("DOMContentLoaded", function () {
             mejoraBate.style.display = "block";
         }
 
-        if (ClavosComprados > 1) {
+        if (ClavosComprados > 0) {
             mejoraClavo.style.display = "block";
         }
 
         if (balaComprada) {
-            setInterval(() => {
-                mejoraBala.style.display = "block";
-                balaceoMejora.disabled = true;
-            }, 30000);
-            balaComprada = false;
+            let i = 0
+            if (balaComprada) {
+                let i = 0
+                setInterval(() => {
+                    if (i < 5) {
+                        i++;
+                        mejoraBala.style.display = "block";
+                        balaceoMejora.disabled = true;
+                    } else {
+                        mejoraBala.style.display = "none"
+                        balaComprada = false;
+                    }
+                }, 1000)
+
+            } else {
+                balaceoMejora.disabled = puntos < precioBalazo;
+            }
         } else {
             balaceoMejora.disabled = puntos < precioBalazo;
         }
 
-        bateadorMejora.innerText = precioBateador + "puntos = Contrata a un bateador +30/s"
-        botasMejora.innerText = precioClavo + "puntos = Compra botas de púas +50/clic";
-        balaceoMejora.innerText = precioBalazo + "puntos = Balacéalo +100"
+        if (puntos > 10) {
+            bebe.style.cursor = "url(Recursos/bota2.png), pointer";
+        }
+
+        bateadorMejora.innerText = precioBateador + " puntos = Contrata a un bateador +30/s"
+        botasMejora.innerText = precioClavo + " puntos = Compra botas de púas +50/clic";
+        balaceoMejora.innerText = precioBalazo + " puntos = Balacéalo +100"
         bateadorMejora.disabled = puntos < precioBateador;
         botasMejora.disabled = puntos < precioClavo;
 
     }
+
+    setInterval(() => {
+        actualizaPantalla();
+    }, 1);
 })
