@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
     let fase2Iniciada = false;
 
     const bebe = document.getElementById("bebe");
+    const imgBebe = this.document.getElementById("bebeimg");
     const bateadorMejora = document.getElementById("bate");
     const botasMejora = document.getElementById("botas");
     const balaceoMejora = document.getElementById("balazo");
@@ -18,12 +19,16 @@ window.addEventListener("DOMContentLoaded", function () {
     const mejoraBate = document.getElementById("bateador");
     const mejoraClavo = document.getElementById("clavos");
     const mejoraBala = document.getElementById("revolver");
-    const sonidoPatada = new Audio("C:/Users/Propietario/Documents/RepositorioMarcas/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/Audio/zapsplat_impacts_body_hit_punch_or_kick_whoosh_004_90398.mp3");
-    const sonidoBate = new Audio("C:/Users/Propietario/Documents/RepositorioMarcas/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/Audio/zapsplat_impacts_body_hit_baseball_bat_hard_whack_crack_crunch_44146.mp3");
-    const sonidoClavos = new Audio("C:/Users/Propietario/Documents/RepositorioMarcas/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/Audio/BotaClavos.mp3");
-    const sonidoBalazo = new Audio("C:/Users/Propietario/Documents/RepositorioMarcas/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/Audio/Balazo.mp3");
-    const risaBebe1 = new Audio("C:/Users/Propietario/Documents/RepositorioMarcas/Tema6/LenguajeDeMarcaT6/Proyecto6.1/Recursos/Audio/risaBebe1.mp3");
-
+    const sonidoCompra = new Audio("Recursos/Audio/Compra.mp3")
+    const sonidoPatada = new Audio("Recursos/Audio/zapsplat_impacts_body_hit_punch_or_kick_whoosh_004_90398.mp3");
+    const sonidoBate = new Audio("Recursos/Audio/zapsplat_impacts_body_hit_baseball_bat_hard_whack_crack_crunch_44146.mp3");
+    const sonidoClavos = new Audio("Recursos/Audio/BotaClavos.mp3");
+    const sonidoBalazo = new Audio("Recursos/Audio/Balazo.mp3");
+    const risaBebe1 = new Audio("Recursos/Audio/risaBebe1.mp3");
+    const risaBebe2 = new Audio("Recursos/Audio/risaBebe2.mp3");
+    const risaBebe3 = new Audio("Recursos/Audio/risaBebe3.mp3");
+    const metralletaDisparo = new Audio("Recursos/Audio/Metralleta.mp3");
+    const cuchillazo = new Audio("Recursos/Audio/Cuchillaso.mp3");
     document.getElementsByTagName("body")[0].style.color = "red";
 
     bebe.addEventListener("click", () => {
@@ -37,6 +42,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     bateadorMejora.addEventListener("click", () => {
         if (puntos >= precioBateador) {
+            sonidoCompra.play();
             puntos -= precioBateador;
             bateadoresContratados++;
             precioBateador = Math.floor(precioBateador * 1.3);
@@ -53,6 +59,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     botasMejora.addEventListener("click", () => {
         if (puntos >= precioClavo) {
+            sonidoCompra.play();
             puntos -= precioClavo;
             ClavosComprados++;
             pointsPerClick += 50;
@@ -95,8 +102,11 @@ window.addEventListener("DOMContentLoaded", function () {
             balaceoMejora.disabled = puntos < precioBalazo;
         }
 
-        if (puntos > 10) {
+        if (puntos > 10 && puntos < 500) {
             bebe.style.cursor = "url(\"Recursos/bota2.png\"), pointer";
+            imgBebe.src = "../Proyecto6.1/Recursos/bebe1.png";
+        }else if(puntos > 500 && puntos < 1000){
+            imgBebe.src = "../Proyecto6.1/Recursos/bebe2.png"
         }
 
         bateadorMejora.innerText = precioBateador + " puntos = Contrata a un bateador +30/s"
@@ -118,6 +128,13 @@ window.addEventListener("DOMContentLoaded", function () {
     function iniciarFase2(){
         document.querySelector(".mejoras").style.display = "none";
         risaBebe1.play();
+        risaBebe1.onended = () => {
+            risaBebe2.play();
+            risaBebe2.onended = () => {
+                risaBebe3.play();
+            };
+        };
+        imgBebe.src = "../Proyecto6.1/Recursos/bebe3.png";
         const vidaContainer = document.createElement("div");
         vidaContainer.id = "vidaContainer";
         vidaContainer.innerHTML = `<div id="vidaBarra"></div>`;
@@ -127,9 +144,13 @@ window.addEventListener("DOMContentLoaded", function () {
         
 
         function reducirVida(){
+            cuchillazo.play();
             if(barraVida){
                 vida -= 10;
             barraVida.style.width = vida + "%";
+            if(vida < 100){
+                imgBebe.src = "../Proyecto6.1/Recursos/bebe4.png";
+            }
             if(vida <= 0) {
                 alert("¡Has perdido! La barra de vida llegó a 0.");
                 location.reload();
@@ -149,6 +170,8 @@ window.addEventListener("DOMContentLoaded", function () {
         botonMetralleta.addEventListener("mousedown", () => {
             const incrementar = setInterval(() => {
                 puntos += 1000;
+                metralletaDisparo.play();
+                metralletaDisparo.loop = true;
                 actualizaPantalla();
                 if (puntos >= 100000) {
                     alert("¡BIEN HECHO, SOLDADO!");
@@ -167,6 +190,7 @@ window.addEventListener("DOMContentLoaded", function () {
             iniciarFase2();
             pointsPerClick = 0;
             fase2Iniciada = true
+            musicaFondo.pause();
         }
     }, 100);
     
